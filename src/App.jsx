@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import BeginGame from './BeginGame';
 import ChooseCharacter from './Composents/ChooseCharacter';
-
+import useWebSocket from 'react-use-websocket';
 
 function App() {
   const [showCharacterSelection, setShowCharacterSelection] = useState(true);
@@ -31,6 +31,10 @@ function App() {
       setSelectedCharacter(character); // Mettre à jour le personnage sélectionné
       setShowCharacterSelection(false); // Cacher l'écran de sélection des personnages
     };
+
+    socket = new WebSocket(`ws://localhost:8000/?username=${username}`);
+    const WS_URL= 'ws://localhost:8000'
+    useWebSocket(WS_URL, {queryParams:{username}})
   return (
     <>
 
